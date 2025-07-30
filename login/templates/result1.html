@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Prediction</title>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-image: url("{{ url_for('static', filename='background.jpg.jpg') }}");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+        th {
+            background-color: rgba(242, 242, 242, 0.8);
+        }
+        tr:nth-child(even) {
+            background-color: rgba(249, 249, 249, 0.8);
+        }
+        h1, h2 {
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        .graph-container {
+            width: 80%;
+            height: 500px;
+            margin: 20px auto;
+            border-collapse: collapse;
+        }
+        a {
+            color: #ffffff;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            font-size: small;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>Stock Prediction for {{ ticker }}</h1>
+    <h2>Predicted Price: ${{ predicted_price }}</h2>
+
+    <h3 style="text-align: center;">Company Summary</h3>
+    <table>
+        <tr>
+            <th>Attribute</th>
+            <th>Value</th>
+        </tr>
+        {% for key, value in stock_summary.items() %}
+        <tr>
+            <td>{{ key }}</td>
+            <td>{{ value }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <div class="graph-container">
+        <!-- Embed the interactive graph here -->
+        {{ graph_html | safe }}
+    </div>
+
+    <a href="/">Go Back</a>
+
+    <footer>
+        &copy; 2024 TradeX Inc. All rights reserved.
+    </footer>
+</body>
+</html>

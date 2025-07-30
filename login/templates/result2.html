@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            /* padding: 0; */
+            background-image: url("{{ url_for('static', filename='background1.jpg') }}");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            color:#333;
+        }
+        h1 {
+            text-align: center;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); /* Add text shadow for better readability */
+        }
+        .container {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: flex-start;
+            margin-top: 20px;
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.8); 
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .graph {
+            width: 46%; /* Increased width for larger graphs */
+            text-align: center;
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 80px;
+        }
+        .footer {
+            text-align: center;
+            padding: 10px;
+            background-color: transparent;
+            border-top: 1px solid #ddd;
+        }
+        .footer p{
+            color: #ffd700;
+            font-size: 14px;
+        }
+        .footer a {
+            text-decoration: none;
+            color: #007bff;
+            font-weight: bold;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        
+
+        
+        
+    </style>
+</head>
+<body>
+    <h1>Stock Trend Prediction for {{ ticker }}</h1>
+
+    <div class="container">
+        <!-- Historical Prices Graph -->
+        <div class="graph">
+            <h2>Historical Prices with Moving Averages</h2>
+            <img src="{{ url_for('static', filename=historical_plot_filename.split('/')[-1]) }}" alt="Historical Prices with Moving Averages">
+        </div>
+
+        <!-- Predicted Prices Graph -->
+        <div class="graph">
+            <h2>Predicted Future Trend for next 30 Days</h2>
+            <img src="{{ url_for('static', filename=prediction_plot_filename.split('/')[-1]) }}" alt="Predicted Future Prices">
+        </div>
+
+        </div>
+    <!-- Footer Section -->
+        <div class="footer">
+            <a href="javascript:history.back()">Go Back</a> <!-- Go Back Button -->
+            <p>&copy; 2024 TradeX Inc. All rights reserved.</p> <!-- Trademark Notice -->
+        </div>
+
+</body>
+</html>

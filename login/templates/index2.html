@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Prediction</title>
+    <style>
+        /* Apply a full-page background image */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-image: url("{{ url_for('static', filename='indexbgimg.jpg') }}");
+            background-size: cover;
+            background-position: center;
+            color: white;
+            overflow:hidden;
+        }
+
+        /* Center the content */
+        .container {
+            text-align: center;
+            padding: 100px;
+            background-color: rgba(8, 8, 8, 0.6); /* Transparent background for readability */
+            margin: 50px auto;
+            max-width: 600px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(19, 4, 61, 0.5);
+        }
+
+        /* Heading styling */
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        /* Paragraph styling */
+        .description {
+            margin: 20px 0;
+            font-size: 1.2em;
+            line-height: 1.6;
+        }
+
+        /* Form styling */
+        form {
+            margin-top: 20px;
+        }
+
+        label {
+            font-size: 1.2em;
+            margin-right: 10px;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            font-size: 1em;
+            border-radius: 5px;
+            border: none;
+            width: 60%;
+            max-width: 300px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 1em;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <div class="container">
+            <h1>Stock Trend Prediction</h1>
+            <div class="description">
+                <p>
+                    This web application uses a Long Short-Term Memory (LSTM) model to predict the stock price trend for the next 30 days based on the previous 100 days of historical stock data. By analyzing past price movements and patterns, the LSTM model forecasts whether the stock is likely to experience an upward (bullish) or downward (bearish) trend in the coming month. This allows investors to get an idea of short-term market movements.These predictions provide insights into the near-term behavior of the stock, helping investors make more informed decisions about their investments.
+                </p>
+            </div>
+            <!-- <form action="/predict_lstm" method="post">
+                <label for="ticker">Enter Stock Ticker:</label>
+                <input type="text" id="ticker" name="ticker" placeholder="AAPL">
+                <br><br>
+                <button type="submit">Predict</button>
+            </form> -->
+            <form action="/predict_lstm" method="POST" target="_blank">
+                <input type="text" name="ticker" placeholder="Enter Stock Ticker" required>
+                <button type="submit">Predict</button>
+            </form>
+    </div>
+        
+    </div> 
+
+</body>
+</html>
+

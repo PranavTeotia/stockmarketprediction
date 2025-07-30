@@ -1,0 +1,29 @@
+/* General styles for the navbar */
+.navbar {
+    background-color: #333; /* Dark background for navbar */
+    padding: 10px 20px;
+}
+
+/* Navbar links container */
+.navbar-links {
+    display: flex; /* Flexbox layout for horizontal alignment */
+    list-style-type: none; /* Remove bullets from list */
+    margin: 0;
+    padding: 0;
+}
+
+/* Individual links */
+.navbar-links li {
+    margin: 0 15px; /* Add spacing between links */
+}
+
+.navbar-links a {
+    text-decoration: none; /* Remove underline from links */
+    color: #fff; /* White text for links */
+    font-weight: bold;
+    transition: color 0.3s; /* Smooth hover effect */
+}
+
+.navbar-links a:hover {
+    color: #f0a500; /* Highlight color on hover */
+}

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentiment Analysis Results</title>
+    <style>
+        /* Apply background image to the entire page */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-size: cover; /* Make the background image cover the whole page */
+            background-image: url("{{ url_for('static', filename='background1.jpg') }}");
+            background-repeat: no-repeat; /* Prevent tiling of the image */
+            background-attachment: fixed; /* Fix the background while scrolling */
+            background-position: center; /* Center the image */
+            color: #333; /* Ensure text is readable against the background */
+        }
+
+        /* Flexbox layout for side-by-side display */
+        .container {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px; /* Space between table and graph */
+            background-color: rgba(255, 255, 255, 0.9); /* Add a semi-transparent background for content */
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add some depth */
+        }
+
+        /* Table styles */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        /* Plot styles */
+        .plot {
+            width: 100%;
+            height: auto;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Container for both table and plot with equal width */
+        .table-container, .plot-container {
+            width: 50%; /* Make both table and plot equal in size */
+            padding: 10px;
+        }
+
+        .table-container h2, .plot-container h2 {
+            text-align: center;
+        }
+
+        h1 {
+            text-align: center; /* Center-align the main title */
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); /* Add a shadow for better visibility */
+        }
+    </style>
+</head>
+<body>
+    <h1>News Sentiment Analysis</h1>
+
+    <!-- Container to hold the table and plot side by side -->
+    <div class="container">
+        <!-- News Table -->
+        <div class="table-container">
+            <h2>Fetched News with Sentiment Scores</h2>
+            <table>
+                <tr>
+                    <th>Headline</th>
+                    <th>Link</th>
+                    <th>Sentiment Score</th> <!-- Sentiment score column header -->
+                </tr>
+                {% for article in news %}
+                <tr>
+                    <td>{{ article.Headline }}</td>
+                    <td><a href="{{ article.Link }}" target="_blank">View Article</a></td>
+                    <td>{{ article.finbert_sentiment_score }}</td> <!-- Display the sentiment score -->
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+        <!-- Sentiment Plot -->
+        <div class="plot-container">
+            <h2>Sentiment Score Plot</h2>
+            <img src="{{ url_for('static', filename='sentiment_plot.png') }}" alt="Sentiment Plot" class="plot">
+        </div>
+    </div>
+</body>
+</html>
